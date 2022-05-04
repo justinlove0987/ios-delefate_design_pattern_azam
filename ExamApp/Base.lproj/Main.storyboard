@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="loZ-bL-gdv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Exam Controller-->
+        <scene sceneID="v9o-Fp-rgD">
+            <objects>
+                <viewController id="loZ-bL-gdv" customClass="ExamController" customModule="MVC_Exam_Questions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lbY-Zt-PM0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-Uy-pCV" customClass="QuestionView" customModule="MVC_Exam_Questions" customModuleProvider="target">
+                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="IsI-Eh-Rab"/>
+                                    <constraint firstAttribute="width" constant="240" id="dVn-m3-3MB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fTe-Uy-pCV" firstAttribute="centerX" secondItem="lbY-Zt-PM0" secondAttribute="centerX" id="Ind-Ye-GfV"/>
+                            <constraint firstItem="fTe-Uy-pCV" firstAttribute="centerY" secondItem="lbY-Zt-PM0" secondAttribute="centerY" id="ovq-em-AsK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SIs-7Z-xMg"/>
+                    </view>
+                    <connections>
+                        <outlet property="questionView" destination="fTe-Uy-pCV" id="WAJ-UI-SIO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jKq-OZ-IhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19" y="-6"/>
+        </scene>
+    </scenes>
+</document>
