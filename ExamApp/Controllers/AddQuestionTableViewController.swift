@@ -11,6 +11,7 @@ import UIKit
 
 protocol AddQuestionDelegate {
     func addQuestionDidSaveQuestion(question: Question, controller: UIViewController)
+    func addQuestionDidClose(controller: UIViewController)
 }
 
 class AddQuestionTableViewController: UITableViewController {
@@ -34,7 +35,7 @@ class AddQuestionTableViewController: UITableViewController {
     }
     
     @IBAction func close() {
-        
+        delegate.addQuestionDidClose(controller: self)
     }
     
     @IBAction func save() {

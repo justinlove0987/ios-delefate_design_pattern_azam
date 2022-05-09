@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddQuestionDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     
     private var questions: [Question] = [Question]()
@@ -54,5 +55,9 @@ class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func addQuestionDidClose(controller: UIViewController) {
+        controller.dismiss(animated: true)
     }
 }
