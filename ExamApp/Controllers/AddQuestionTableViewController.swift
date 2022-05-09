@@ -9,17 +9,39 @@
 import Foundation
 import UIKit
 
+protocol AddQuestionDelegate {
+    func addQuestionDidSaveQuestion(question: Question, controller: UIViewController)
+}
+
 class AddQuestionTableViewController: UITableViewController {
     
     @IBOutlet weak var questionTextField: UITextField!
     @IBOutlet weak var pointTextField: UITextField!
     @IBOutlet weak var isCorrectSegmetedControl: UISegmentedControl!
     
+    private var isCorrect: Bool = false
+    
+    var delegate: AddQuestionDelegate!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.isCorrectSegmetedControl.addTarget(self, action: #selector(isCorrectSegmentedControlSelected), for: .valueChanged)
+    }
+    
+    @objc func isCorrectSegmentedControlSelected(segementedControl: UISegmentedControl) {
+        isCorrect = segementedControl.selectedSegmentIndex == 0 ? true : false
+    }
+    
     @IBAction func close() {
         
     }
     
     @IBAction func save() {
+        let text = questionTextField.text!
+        let point = Double(pointTextField.text!)!
         
+        let question = Question(text: text, point: point, isCorrect: isCorrect)
+        delegate.addQuestionDidSaveQuestion(question: question, controller: self)
     }
 }

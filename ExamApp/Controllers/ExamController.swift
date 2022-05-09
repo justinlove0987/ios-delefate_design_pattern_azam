@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddQuestionDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     private var questions: [Question] = [Question]()
@@ -26,6 +25,13 @@ class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nc = segue.destination as? UINavigationController else { return }
+        guard let addQuestionTVC = nc.viewControllers.first as? AddQuestionTableViewController else { return }
+        
+        addQuestionTVC.delegate = self
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
@@ -37,5 +43,16 @@ class ExamController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = self.questions[indexPath.row].text
         
         return cell
+    }
+    
+    func addQuestionDidSaveQuestion(question: Question, controller: UIViewController) {
+        questionService.add(question: question)
+        controller.dismiss(animated: true)
+        
+        self.questions = questionService.getAll()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
